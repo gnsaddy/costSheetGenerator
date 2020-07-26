@@ -1,0 +1,28 @@
+{% extends 'include/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %} <title>Generated Cost Sheet</title> {% endblock %}
+
+
+{% block container_fluid %}
+    <div class="container-fluid p-1">
+        <table class="table table-bordered table-hover text-center">
+            <thead>
+            <tr>
+                <th>Cost Sheet Name</th>
+                <th>Created on</th>
+                <th>View cost sheet</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for sheet in costSheet %}
+                <tr>
+                    <td>{{ sheet.costSheetName }}</td>
+                    <td>{{ sheet.createdDate.date }}</td>
+                    <td><a href="../finalCostSheet/{{ sheet.id }}" class="btn btn-warning" id='{{ sheet.id }}'>edit {{ sheet.id }}</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <br><br>
+{% endblock %}

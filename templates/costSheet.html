@@ -1,0 +1,176 @@
+{% extends 'include/base.html' %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+{% block title %} <title>Cost sheet</title> {% endblock %}
+{% block container_fluid %}
+    <div class="container-fluid p-1 mt-5">
+        {% for message in messages %}
+            <div class="card card-header"
+                 style="border-radius: 10px; margin-bottom: 1%; background: #29a7a6">
+                <small class="font-weight-bold">{{ message }}</small>
+            </div>
+        {% endfor %}
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4 col-md-5 col-lg-5 border">
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <input type="submit" value="Create" class="w-100 text-white text-center my-2 btn btn-info">
+                    </form>
+                </div>
+                <div class="col-sm-4 offset-md-1 offset-lg-1 col-md-5 col-lg-5 border">
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form_embroidery|crispy }}
+                        <input type="submit" value="Create" class="w-100 text-white text-center my-2 btn btn-info">
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4 col-md-5 col-lg-5">
+
+                        {{ form_fabric.fabricName|as_crispy_field }}
+
+                    </div>
+                    <div class="col-sm-4 offset-md-1 offset-lg-1 col-md-5 col-lg-5">
+
+                        {{ form_fabric.content|as_crispy_field }}
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4 col-md-5 col-lg-5">
+
+                        {{ form_fabric.gsm|as_crispy_field }}
+
+                    </div>
+                    <div class="col-sm-4 offset-md-1 offset-lg-1 col-md-5 col-lg-5">
+
+                        {{ form_fabric.yarnCount|as_crispy_field }}
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4 col-md-5 col-lg-5">
+
+                        {{ form_fabric.construction|as_crispy_field }}
+
+                    </div>
+                    <div class="col-sm-4 offset-md-1 offset-lg-1 col-md-5 col-lg-5">
+
+                        {{ form_fabric.type|as_crispy_field }}
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4 col-md-5 col-lg-5">
+
+                        {{ form_fabric.totalWidth|as_crispy_field }}
+
+                    </div>
+                    <div class="col-sm-4 offset-md-1 offset-lg-1 col-md-5 col-lg-5">
+
+                        {{ form_fabric.consumption|as_crispy_field }}
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4 col-md-5 col-lg-5">
+
+                        {{ form_fabric.extraAllowance|as_crispy_field }}
+
+                    </div>
+                    <div class="col-sm-4 offset-md-1 offset-lg-1 col-md-5 col-lg-5">
+
+                        {{ form_fabric.rate|as_crispy_field }}
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4 col-md-5 col-lg-5">
+
+                        {{ form_fabric.importDuty|as_crispy_field }}
+
+                    </div>
+                    <div class="col-sm-4 offset-md-1 offset-lg-1 col-md-5 col-lg-5">
+
+                        {{ form_fabric.totalCost|as_crispy_field }}
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4 col-md-5 col-lg-5">
+
+                        {{ form_fabric.supplier|as_crispy_field }}
+
+                    </div>
+                    <div class="col-sm-4 offset-md-1 offset-lg-1 col-md-5 col-lg-5">
+
+                        {{ form_fabric.remark|as_crispy_field }}
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4 col-md-5 col-lg-5">
+
+                        {{ form_fabric.related|as_crispy_field }}
+
+                    </div>
+                    <div class="col-sm-4 offset-md-1 offset-lg-1 col-md-5 col-lg-5">
+
+                        <input type="submit" value="Create" class="text-white text-center btn btn-info mt-3">
+
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <br>
+    <hr><br>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 col-md-5 col-lg-5 border">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form_thread|crispy }}
+                    <input type="submit" value="Create" class="w-100 text-white text-center my-2 btn btn-info">
+                </form>
+            </div>
+            <div class="col-sm-4 offset-md-1 offset-lg-1 col-md-5 col-lg-5 border">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form_cmt|crispy }}
+                    <input type="submit" value="Create" class="w-100 text-white text-center my-2 btn btn-info">
+                </form>
+            </div>
+        </div>
+    </div>
+    <br>
+    <hr><br>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 col-md-5 col-lg-5 border">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form_polybag|crispy }}
+                    <input type="submit" value="Create" class="w-100 text-white text-center my-2 btn btn-info">
+                </form>
+            </div>
+            <div class="col-sm-4 offset-md-1 offset-lg-1 col-md-5 col-lg-5 border">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form_label|crispy }}
+                    <input type="submit" value="Create" class="w-100 text-white text-center my-2 btn btn-info">
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

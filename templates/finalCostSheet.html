@@ -1,0 +1,267 @@
+{% extends 'include/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %} <title>Generated Cost Sheet</title> {% endblock %}
+
+
+{% block container_fluid %}
+    <div class="container-fluid p-1" id="content">
+        <div class="container">
+            {% for sheet in costSheet %}
+                <div class="text-muted">
+                    <div class="row">
+                        <div class="col-md-4 col-lg-4">
+                            <h3 class="text-muted">{{ sheet.costSheetName }}</h3>
+                        </div>
+                        <div class="offset-md-5 col-md-3 col-lg-3 ">
+                            <h3 class="text-muted">{{ sheet.createdDate.date }}</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+                <div class="row">
+                    <div class="col-sm-5 col-md-5 col-lg-5">
+                        <img src="{{ sheet.image.url }}" class="img-fluid" alt="img" width="250"/>
+                    </div>
+                    <div class="offset-1 col-sm-5 col-md-5 col-lg-5 text-justify">
+                        <h5 class="border-bottom">Buyer: &nbsp;<span
+                                class="text-muted"> &nbsp;&nbsp;{{ sheet.buyer }}</span></h5>
+                        <h5 class="border-bottom">Style No: &nbsp;<span
+                                class="text-muted"> &nbsp;&nbsp;{{ sheet.styleNum }}</span></h5>
+                        <h5 class="border-bottom">Category:&nbsp;<span
+                                class="text-muted"> &nbsp;&nbsp; {{ sheet.category }}</span></h5>
+                        <h5 class="border-bottom">Description: &nbsp;<span
+                                class="text-muted"> &nbsp;&nbsp;{{ sheet.description }}</span></h5>
+                        <h5 class="border-bottom">LP/Season: &nbsp;<span
+                                class="text-muted"> &nbsp;&nbsp;{{ sheet.season }}</span></h5>
+                        <h5>Quantity: &nbsp;<span
+                                class="text-muted"> &nbsp;&nbsp;{{ sheet.order_quant }}</span></h5>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <br>
+        <hr>
+        <br>
+        <div class="row">
+            <table class="table table-bordered table-hover table-responsive-sm">
+                <thead>
+                <tr>
+                    <th>Fabric Name</th>
+                    <th>Content</th>
+                    <th>GSM</th>
+                    <th>Yarn Count</th>
+                    <th>Construction</th>
+                    <th>Consumption</th>
+                    <th>Type</th>
+                    <th>Total Width</th>
+                    <th>Extra Allowance</th>
+                    <th>Rate</th>
+                    <th>Total Cost</th>
+                    <th>Import Duty</th>
+                    <th>Remark</th>
+                    <th>Supplier</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for data in fabricData %}
+                    <tr>
+                        <td>{{ data.fabricName }}</td>
+                        <td>{{ data.content }}</td>
+                        <td>{{ data.gsm }}</td>
+                        <td>{{ data.yarnCount }}</td>
+                        <td>{{ data.construction }}</td>
+                        <td>{{ data.consumption }}</td>
+                        <td>{{ data.type }}</td>
+                        <td>{{ data.totalWidth }}</td>
+                        <td>{{ data.extraAllowance }}</td>
+                        <td>{{ data.rate }}</td>
+                        <td>{{ data.totalCost }}</td>
+                        <td>{{ data.importDuty }}</td>
+                        <td>{{ data.remark }}</td>
+                        <td>{{ data.supplier }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <hr>
+        <div class="row">
+            <table class="table table-bordered table-hover table-responsive-sm">
+                <thead>
+                <tr>
+                    <th>Embroidery Description</th>
+                    <th>No. of Color</th>
+                    <th>Consumption</th>
+                    <th>Extra Allowance</th>
+                    <th>Rate</th>
+                    <th>Remark</th>
+                    <th>Total Cost</th>
+                    <th>Supplier</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for data in embroideryData %}
+                    <tr>
+                        <td>{{ data.embroideryDes }}</td>
+                        <td>{{ data.color }}</td>
+                        <td>{{ data.consumption }}</td>
+                        <td>{{ data.extraAllowance }}</td>
+                        <td>{{ data.rate }}</td>
+                        <td>{{ data.remark }}</td>
+                        <td>{{ data.totalCost }}</td>
+                        <td>{{ data.supplier }}</td>
+
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <hr>
+        <div class="row">
+            <table class="table table-bordered table-hover table-responsive-sm">
+                <thead>
+                <tr>
+                    <th>Thread Type</th>
+                    <th>Content</th>
+                    <th>TKT size</th>
+                    <th>Thread color</th>
+                    <th>Cost/Unit</th>
+                    <th>Consumption</th>
+                    <th>Extra Allowance</th>
+                    <th>Import Duty</th>
+                    <th>Total Cost</th>
+                    <th>Remark</th>
+                    <th>Supplier</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for data in threadData %}
+                    <tr>
+                        <td>{{ data.threadType }}</td>
+                        <td>{{ data.content }}</td>
+                        <td>{{ data.tktSize }}</td>
+                        <td>{{ data.threadColor }}</td>
+                        <td>{{ data.cost_unit }}</td>
+                        <td>{{ data.consumption }}</td>
+                        <td>{{ data.extraAllowance }}</td>
+                        <td>{{ data.importDuty }}</td>
+                        <td>{{ data.totalCost }}</td>
+                        <td>{{ data.remark }}</td>
+                        <td>{{ data.supplier }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <hr>
+        <div class="row">
+            <table class="table table-bordered table-hover table-responsive-sm">
+                <thead>
+                <tr>
+                    <th>PloyBag type</th>
+                    <th>Polybag material</th>
+                    <th>Dimension</th>
+                    <th>Extra Allowance</th>
+                    <th>Cost/Unit</th>
+                    <th>Import Duty</th>
+                    <th>Total Cost</th>
+                    <th>Remark</th>
+                    <th>Supplier</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for data in polyBagData %}
+                    <tr>
+                        <td>{{ data.polyBagType }}</td>
+                        <td>{{ data.polyBagMaterial }}</td>
+                        <td>{{ data.dimension }}</td>
+                        <td>{{ data.extraAllowance }}</td>
+                        <td>{{ data.cost_unit }}</td>
+                        <td>{{ data.importDuty }}</td>
+                        <td>{{ data.totalCost }}</td>
+                        <td>{{ data.remark }}</td>
+                        <td>{{ data.supplier }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <hr>
+        <div class="row">
+            <table class="table table-bordered table-hover table-responsive-sm">
+                <thead>
+                <tr>
+                    <th>Label type</th>
+                    <th>Text type</th>
+                    <th>Dimension</th>
+                    <th>Rate</th>
+                    <th>Extra Allowance</th>
+                    <th>Import Duty</th>
+                    <th>Total Cost</th>
+                    <th>Remark</th>
+                    <th>Supplier</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for data in mainData %}
+                    <tr>
+                        <td>{{ data.labelType }}</td>
+                        <td>{{ data.textType }}</td>
+                        <td>{{ data.dimension }}</td>
+                        <td>{{ data.rate }}</td>
+                        <td>{{ data.extraAllowance }}</td>
+                        <td>{{ data.importDuty }}</td>
+                        <td>{{ data.totalCost }}</td>
+                        <td>{{ data.remark }}</td>
+                        <td>{{ data.supplier }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <hr>
+        <div class="row">
+            <table class="table table-bordered table-hover table-responsive-sm">
+                <thead>
+                <tr>
+                    <th>CMT Cost</th>
+                    <th>Packaging charge</th>
+                    <th>Factory Overhead</th>
+                    <th>Testing cost</th>
+                    <th>Other cost</th>
+                    <th>Logistic cost</th>
+                    <th>Factory Markup</th>
+                    <th>Total INR</th>
+                    <th>Agent Markup</th>
+                    <th>Factory FOB</th>
+                    <th>Client FOB</th>
+                    <th>Contractual cost</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for data in cmtData %}
+                    <tr>
+                        <td>{{ data.cmtCost }}</td>
+                        <td>{{ data.packagingCharge }}</td>
+                        <td>{{ data.factoryOverheadCost }}</td>
+                        <td>{{ data.testingCost }}</td>
+                        <td>{{ data.otherCost }}</td>
+                        <td>{{ data.logisticCost }}</td>
+                        <td>{{ data.factoryMarkup }}</td>
+                        <td>{{ data.totalInr }}</td>
+                        <td>{{ data.agentMarkup }}</td>
+                        <td>{{ data.factoryFOB }}</td>
+                        <td>{{ data.clientFOB }}</td>
+                        <td>{{ data.constractualCost }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    <div class="container m-4 p-2">
+        <button class="btn btn-primary btn-block" onclick="window.print();">Generate cost sheet</button>
+    </div>
+    </div>
+
+{% endblock %}
